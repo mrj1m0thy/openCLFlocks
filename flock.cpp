@@ -92,8 +92,8 @@ void Flock::drawFlock() {
 	printf("ret at %d is %d\n", __LINE__, ret);
 
 	// Create memory buffers on the device for each vector 
-	cl_mem a_mem_obj = clCreateBuffer(context, CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR,
-		NUM_BIRDS * sizeof(Bird), &birds[0], &ret);
+	cl_mem a_mem_obj = clCreateBuffer(context, CL_MEM_READ_WRITE,
+		NUM_BIRDS * sizeof(Bird), NULL, &ret);
 
 	/*char* message = new char[10000];
 	cl_mem b_mem_obj = clCreateBuffer(context, CL_MEM_WRITE_ONLY,
@@ -121,7 +121,7 @@ void Flock::drawFlock() {
 
 	printf("after building\n");
 	// Create the OpenCL kernel
-	cl_kernel kernel = clCreateKernel(program, "calculateBirdPositions", &ret);
+	cl_kernel kernel = clCreateKernel(program, "calculateBird", &ret);
 	printf("ret at %d is %d\n", __LINE__, ret);
 	///////////////////////////////////////////////////////////////
 
@@ -173,16 +173,19 @@ void Flock::loadKernel(char* name) {
 }
 
 void Flock::getPlatInfo() {
-	// Get platform and device information
-	ret = clGetPlatformIDs(0, NULL, &ret_num_platforms);
-	platforms = (cl_platform_id*)malloc(ret_num_platforms * sizeof(cl_platform_id));
+	//// Get platform and device information
+	//ret = clGetPlatformIDs(0, NULL, &ret_num_platforms);
+	//platforms = (cl_platform_id*)malloc(ret_num_platforms * sizeof(cl_platform_id));
 
-	ret = clGetPlatformIDs(ret_num_platforms, platforms, NULL);
-	printf("ret at %d is %d\n", __LINE__, ret);
+	//ret = clGetPlatformIDs(ret_num_platforms, platforms, NULL);
+	//printf("ret at %d is %d\n", __LINE__, ret);
 
-	ret = clGetDeviceIDs(platforms[1], CL_DEVICE_TYPE_ALL, 1,
-		&device_id, &ret_num_devices);
-	printf("ret at %d is %d\n", __LINE__, ret);
+	//ret = clGetDeviceIDs(platforms[1], CL_DEVICE_TYPE_ALL, 1,
+	//	&device_id, &ret_num_devices);
+	//printf("ret at %d is %d\n", __LINE__, ret);
+
+	ret = clGetPlatformIDs(1, &platform_id, &ret_num_platforms);
+	ret = clGetDeviceIDs(platform_id, CL_DEVICE_TYPE_DEFAULT, 1, &device_id, &ret_num_devices);
 }
 
 //Draw the circles/birds

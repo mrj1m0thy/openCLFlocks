@@ -16,7 +16,7 @@ typedef struct __Bird
 	int numberOfSides = 10;
 }Bird;
 
-__kernel void Flock::calculateBird(__global Bird* tbbBirds) {
+__kernel void calculateBird(__global Bird* tbbBirds) {
 	int i = get_global_id(0);
 	float* v1, *v2, *v3, *v4;
 
@@ -49,7 +49,7 @@ __kernel void Flock::calculateBird(__global Bird* tbbBirds) {
 }
 
 //Steer towards center of other birds
-float* Flock::rule1(Bird bird, Bird* tbbBirds) {
+float* rule1(Bird bird, Bird* tbbBirds) {
 	float* avg = new float[2];
 	avg[0] = 0;
 	avg[1] = 0;
@@ -71,7 +71,7 @@ float* Flock::rule1(Bird bird, Bird* tbbBirds) {
 }
 
 //Keep small distance from other birds
-float* Flock::rule2(Bird bird, Bird* tbbBirds) {
+float* rule2(Bird bird, Bird* tbbBirds) {
 	float* c = new float[2];
 	c[0] = 0;
 	c[1] = 0;
@@ -89,7 +89,7 @@ float* Flock::rule2(Bird bird, Bird* tbbBirds) {
 }
 
 //Match direction with other birds
-float* Flock::rule3(Bird bird, Bird* tbbBirds) {
+float* rule3(Bird bird, Bird* tbbBirds) {
 	float* avg = new float[2];
 	avg[0] = 0;
 	avg[1] = 0;
@@ -111,7 +111,7 @@ float* Flock::rule3(Bird bird, Bird* tbbBirds) {
 }
 
 //Steer away from boundries
-float* Flock::rule4(Bird bird) {
+float* rule4(Bird bird) {
 	float* pos = new float[2];
 	pos[0] = 0;
 	pos[1] = 0;

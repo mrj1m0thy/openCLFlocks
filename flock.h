@@ -60,7 +60,8 @@ public:
 	cl_uint ret_num_devices;
 	cl_uint ret_num_platforms;
 	cl_int ret;
-	cl_platform_id *platforms = NULL;
+	//cl_platform_id *platforms = NULL;
+	cl_platform_id platform_id = NULL;
 
 	cl_context context;
 	cl_command_queue command_queue;
