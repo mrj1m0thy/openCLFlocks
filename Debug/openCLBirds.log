@@ -1,0 +1,5 @@
+﻿  flock.cpp
+c:\users\tyler\source\repos\openclbirds\flock.cpp(56): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\tyler\source\repos\openclbirds\flock.cpp(57): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\tyler\source\repos\openclbirds\flock.cpp(194): warning C4305: 'initializing': truncation from 'double' to 'float'
+  openCLBirds.vcxproj -> C:\Users\Tyler\source\repos\openCLBirds\Debug\openCLBirds.exe
